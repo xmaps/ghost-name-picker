@@ -1,0 +1,44 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+# [START libraries]
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
+# [END libraries]
+
+# [START handlers]
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /templates
+  static_dir: templates
+  application_readable: true
+
+- url: /bootstrap
+  static_dir: bootstrap
+
+- url: /ghost_name_picker/pick-name
+  script: main.app
+  login: required
+  secure: always
+
+- url: /.*
+  script: main.app
+# [END handlers]
+
+
+skip_files:
+# these are the defaults
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+
+- _virtualenv/

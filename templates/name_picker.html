@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% autoescape on %}
+<html>
+  <head>
+    <!-- [START css] -->
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css">
+    <!-- [END css] -->
+    <style type="text/css">
+      body {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        background-color: #f5f5f5;
+        margin: auto;
+        width: 80%;
+      }
+      .nav_bar_text{
+          color: white;
+          font-size: large;
+          margin-top: 10px;
+      }
+      .error_message{
+          color: red;
+      }
+      .ghost_form{
+          margin-top: 10px;
+          border: 1px solid black;
+          width: 80%;
+          font-size: 16px;
+          height: auto;
+          margin-bottom: 15px;
+          padding: 7px 9px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <div class="nav-collapse collapse pull-left nav_bar_text">
+                Ghost Name Picker
+            </div>
+        </div>
+      </div>
+    </div>
+        <div class="container ghost_form">
+            <h3>{{header_text}}</h3>
+            {% if error %}
+                <h5 class="error_message">{{error}}</h5>
+            {% endif %}
+			<form action="/ghost_name_picker/pick-name" method="post">
+                {% if current_user %}
+                    <div>
+		                <select name="assigned_ghost">
+		                    {% for ghost in available_ghosts %}
+		                        <option value="{{ghost.name}}">{{current_user.first_name}} "{{ghost.name}}" {{current_user.last_name}}</option>
+		                    {% endfor %}
+		                </select>
+				    </div>
+                    <div>
+					    <input class="btn" type="submit" value="Change Ghost name"></input>
+                        <a href="/ghost_name_picker/" class="btn">Cancel</a>
+				    </div>
+                {% else %}
+                    <div><input type="text" name="first_name" placeholder="First name" required></input></div>
+				    <div><input type="text" name="last_name" placeholder="Last name" required></input></div>
+                    <div>
+		                <select name="assigned_ghost">
+		                    {% for ghost in available_ghosts %}
+		                        <option value="{{ghost.name}}">{{ghost.name}}</option>
+		                    {% endfor %}
+		                </select>
+				    </div>
+                    <div>
+					    <input class="btn" type="submit" value="Create Ghost name"></input>
+					    <input class="btn" type="reset" value="Reset"></input>
+				    </div>
+		        {% endif %}
+			</form>
+        </div>
+    </div>
+  </body>
+</html>
+{% endautoescape %}
+

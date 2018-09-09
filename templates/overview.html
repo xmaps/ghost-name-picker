@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% autoescape on %}
+<html>
+  <head>
+    <!-- [START css] -->
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css">
+    <!-- [END css] -->
+    <style type="text/css">
+      body {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        background-color: #f5f5f5;
+        margin: auto;
+        width: 80%;
+      }
+      .nav_bar_text{
+          color: white;
+          font-size: large;
+          margin-top: 10px;
+      }
+      table, th, td {
+          border: 1px solid black;
+          text-align: center;
+      }
+      .ghosts_table{
+          width: 80%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <div class="nav-collapse collapse pull-left nav_bar_text">
+                Ghost Name Picker
+            </div>
+          <div class="nav-collapse collapse pull-right">
+            <a href="{{ log_url|safe }}" class="btn">{{ log_url_linktext }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="container">
+            <h3>
+                {% if current_user %}
+                    Welcome back {{current_user.first_name}} "{{current_user.ghost}}" {{current_user.last_name}}.
+                {% else %}
+                    Welcome, create your own ghost name.
+		        {% endif %}
+            </h3>
+            <h3><a href="/ghost_name_picker/pick-name" class="btn">{{pick_linktext}}</a></h3>
+        </div>
+        <div class="container">
+            <h3>List of Ghost Names</h3>
+            {% if ghosts %}
+                <table class="ghosts_table">
+                    <tr>
+                        <th>Ghost name</th>
+                        <th>Available</th>
+                        <th>User email</th>
+                        <th>User name</th>
+                    </tr>
+                    {% for ghost in ghosts %}
+                        <tr>
+                            <td>{{ghost.name}}</td>
+                            <td>{% if ghost.taken %}No{% else %}Yes{% endif %}</td>
+                            <td>{{ghost.user_email}}</td>
+                            <td>{{ghost.user_full_name}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        </div>
+    </div>
+  </body>
+</html>
+{% endautoescape %}
+
