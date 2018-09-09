@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3ca3d19-e691-4506-8994-35bb23adadf5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Google_App_Engine_SDK.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap/css/bootstrap-responsive.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap/css/bootstrap-responsive.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap/img/glyphicons-halflings-white.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap/img/glyphicons-halflings.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handlers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handlers/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handlers/name_picker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handlers/overview.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/ghosts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/users.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.pip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/name_picker.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/overview.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/ghots_setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/path_setter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/name_picker.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/name_picker.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -78,8 +52,8 @@
       <file leaf-file-name="name_picker.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/name_picker.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="61" column="52" selection-start-line="61" selection-start-column="52" selection-end-line="61" selection-end-column="52" />
+            <state relative-caret-position="329">
+              <caret line="97" column="61" selection-start-line="97" selection-start-column="61" selection-end-line="97" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -507,8 +481,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/name_picker.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="61" column="52" selection-start-line="61" selection-start-column="52" selection-end-line="61" selection-end-column="52" />
+        <state relative-caret-position="329">
+          <caret line="97" column="61" selection-start-line="97" selection-start-column="61" selection-end-line="97" selection-end-column="61" />
         </state>
       </provider>
     </entry>

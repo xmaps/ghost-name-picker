@@ -62,10 +62,10 @@
                         <a href="/ghost_name_picker/" class="btn">Cancel</a>
 				    </div>
                 {% else %}
-                    <div><input type="text" name="first_name" placeholder="First name" required></input></div>
-				    <div><input type="text" name="last_name" placeholder="Last name" required></input></div>
+                    <div><input onchange="newNames()" id="first_name" type="text" name="first_name" placeholder="First name" required></input></div>
+				    <div><input onchange="newNames()" id="last_name" type="text" name="last_name" placeholder="Last name" required></input></div>
                     <div>
-		                <select name="assigned_ghost">
+		                <select id="assigned_ghosts" name="assigned_ghost">
 		                    {% for ghost in available_ghosts %}
 		                        <option value="{{ghost.name}}">{{ghost.name}}</option>
 		                    {% endfor %}
@@ -80,6 +80,38 @@
         </div>
     </div>
   </body>
+<script>
+    var ghost_name_options = [];
+    {% for ghost in available_ghosts %}
+        ghost_name_options.push("{{ghost.name}}");
+    {% endfor %}
+
+    function newNames() {
+
+        var first_name = document.getElementById("first_name").value;
+        var last_name = document.getElementById("last_name").value;
+
+        var select_element = document.getElementById("assigned_ghosts");
+
+        removeOptions(select_element);
+        for (ghost_index in ghost_name_options) {
+            var ghost_name = ghost_name_options[ghost_index];
+            var option_element = document.createElement("option");
+            option_element.text = first_name + ' "' + ghost_name + '" ' + last_name;
+            option_element.value = ghost_name;
+            select_element.appendChild(option_element);
+        }
+    }
+
+    function removeOptions(selectbox)
+    {
+        var i;
+        for(i = selectbox.options.length - 1 ; i >= 0 ; i--)
+        {
+            selectbox.remove(i);
+        }
+    }
+</script>
 </html>
 {% endautoescape %}
 
