@@ -12,21 +12,23 @@ from utils.path_setter import set_path
 
 
 class Overview(BaseHandler):
+    """
+    Handler class that represents the main page and shows list of ghost names.
+    """
     TEMPLATE_NAME = 'overview.html'
 
     def get(self):
         ghost_instances = Ghost.query().order(Ghost.name).fetch()
-        log_url_linktext = ''
-        log_url = ''
-        pick_linktext = ''
         current_user = None
 
         google_user = users.get_current_user()
         if google_user:
+            # If user logged in, checks session.
             current_user = self.session.get('current_user', None)
             log_url = users.create_logout_url(self.request.uri)
             log_url_linktext = 'Logout'
             pick_linktext = 'Change your current Phantom name'
+            # try to get internal user and save to session
             if not current_user:
                 user = User.query(User.google_user_id==google_user.user_id()).get()
                 if user:
@@ -45,6 +47,7 @@ class Overview(BaseHandler):
             log_url_linktext = 'Login'
             pick_linktext = 'Get a Phantom name'
 
+        # gets list of ghosts
         ghosts = []
         for ghost_instance in ghost_instances:
             user_email = ''

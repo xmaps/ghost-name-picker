@@ -23,6 +23,7 @@ handlers:
 - url: /bootstrap
   static_dir: bootstrap
 
+# This url always needs the user to be logged in
 - url: /ghost_name_picker/pick-name
   script: main.app
   login: required

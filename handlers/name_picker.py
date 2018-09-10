@@ -15,6 +15,9 @@ from utils.path_setter import set_path
 
 
 class NamePicker(BaseHandler):
+    """
+    Handler class that represents the page to pick/edit the ghost name.
+    """
     TEMPLATE_NAME = 'name_picker.html'
     CHANGE_HEADER_TEXT = 'Change your ghost name.'
     CREATE_HEADER_TEXT = 'Create your ghost name.'
@@ -38,15 +41,18 @@ class NamePicker(BaseHandler):
         return available_ghosts
 
     def get(self):
+        """Process get requests and displays the page and required info."""
 
         header_text = self.CREATE_HEADER_TEXT
-        # the page requires the user to be logged in
+        # the page requires the user to be logged in so this is always present
         google_user = users.get_current_user()
         current_user = self.session.get('current_user', None)
+        # if there's no internal user present in the session
         if not current_user:
             user = User.query(User.google_user_id==google_user.user_id()).get()
             if user:
                 associated_ghost = Ghost.query(Ghost.user==user.key).get()
+                # create session user and save it to session
                 current_user = {'first_name': user.first_name,
                                 'last_name': user.last_name,
                                 'email': user.email,
@@ -67,12 +73,15 @@ class NamePicker(BaseHandler):
         self.response.out.write(template.render(path, template_values))
 
     def post(self):
-
+        """Processes the information sent by the page form."""
         current_user = self.session.get('current_user', None)
         assigned_ghost_name = self.request.get('assigned_ghost')
         assigned_ghost = Ghost.query(Ghost.name==assigned_ghost_name).get()
 
+        # check the selected ghost exists in the case there's
+        # tampering with the page
         if assigned_ghost:
+            # edit current ghost name
             if current_user:
                 # get user by email from user on session
                 email = current_user['email']
@@ -85,8 +94,8 @@ class NamePicker(BaseHandler):
                 assigned_ghost.taken = True
                 assigned_ghost.user = user.key
                 ndb.put_multi([old_ghost, assigned_ghost])
-
             else:
+                # create new user and associate ghost name
                 google_user = users.get_current_user()
                 email = google_user.email()
                 first_name = self.request.get('first_name')
@@ -113,8 +122,10 @@ class NamePicker(BaseHandler):
                 'email': user.email,
                 'ghost': assigned_ghost.name}
 
+            # redirect to main page
             self.redirect('/ghost_name_picker/')
         else:
+            # the selected ghost does not exist, refresh page with error message
             available_ghosts = self._get_available_ghosts()
             header_text = self.CHANGE_HEADER_TEXT if current_user is not None else self.CREATE_HEADER_TEXT
             template_values = {

@@ -7,6 +7,9 @@ from webapp2_extras import  sessions
 
 
 class BaseHandler(webapp2.RequestHandler):
+    """
+    Base webapp2 class to add sessions to request handlers.
+    """
     def dispatch(self):
         # Get a session store for this request.
         self.session_store = sessions.get_store(request=self.request)
