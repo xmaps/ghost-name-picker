@@ -1,2 +1,17 @@
 # Google App Engine generated folder
 appengine-generated/
+
+# Mac OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Project folders
+*.gaedata
+.idea/
+
